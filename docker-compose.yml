@@ -13,6 +13,12 @@ services:
     image: example_php_fpm
     volumes:
       - .:/var/app
+    cap_add:
+      - SYS_ADMIN
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    privileged: true
   php_fpm_debug:
     build: docker/php_fpm_debug
     depends_on:
